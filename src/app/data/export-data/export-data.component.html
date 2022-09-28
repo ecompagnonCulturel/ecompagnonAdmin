@@ -1,0 +1,47 @@
+<div class="title"><h2>Exporter vos données d'enquêtes</h2></div>
+  <mat-card id="card" style="text-align: center;" >
+  <mat-card-subtitle>
+   </mat-card-subtitle>
+  <mat-card-content>
+    <form [formGroup]="exportDataForm"   class="center" >
+       <div class="flex-container">
+        <div class="form-group">
+          <h4 class="label">Session</h4>
+          <mat-form-field appearance="fill" class="width">
+            <mat-select  name="session" id="session" formControlName="session" class="form-control" >
+              <mat-option [value]=""></mat-option>
+              <mat-option  *ngFor="let sess of sessions"  [value]="sess.id" (onSelectionChange)="getQuestionnaireBySession($event)">{{sess.sessNom}} </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div class="flex-container">
+        <div class="form-group">
+          <h4 class="label">Questionnaire</h4>
+          <mat-form-field appearance="fill" class="width">
+            <mat-select  name="questionnaire" id="questionnaire" formControlName="questionnaire" class="form-control">
+              <mat-option [value]=""></mat-option>
+              <mat-option  *ngFor="let questionnaire of questionnaires"  [value]="questionnaire.id" (onSelectionChange)="getByQuestionnaire($event)">
+                <span *ngIf="questionnaire.type=='T0' || questionnaire.type=='T2'">
+                  {{questionnaire.type}}
+                </span>
+                <span *ngIf="questionnaire.type!='T0' && questionnaire.type!='T2'">
+                  {{questionnaire.type}}-{{questionnaire.groupEtudiant.groupName}}
+                </span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+
+  </mat-card-content>
+  <mat-card-footer>
+    <button mat-button   style="margin-right:5px;" type="reset" class="buttonAn">Annuler</button>
+    <button  [disabled]="type==null"  type="submit"  class="buttonval" (click)="exportExcel()">Export
+        </button>
+    <mat-spinner *ngIf="exportDataForm.valid==true && type==null" diameter='30' strokeWidth='50'></mat-spinner>
+  </mat-card-footer>
+</mat-card>

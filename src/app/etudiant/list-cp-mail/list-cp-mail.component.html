@@ -1,0 +1,40 @@
+<div >
+  <div  mat-dialog-title class="title">
+    {{data.titre}}
+    <div class="close">
+      <a ><span class="material-icons color_white" button style="cursor: pointer;" title="fermer" mat-dialog-close >
+              close
+            </span>
+      </a>
+    </div>
+  </div>
+
+  <table #exporter="matTableExporter" [dataSource]="dataSource" mat-table matSort matTableExporter>
+    <ng-container matColumnDef="CP">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> CP
+        <input id="cpSearchBoxCPMail" type='text'/>
+      </th>
+      <td *matCellDef="let cpMail" mat-cell> {{cpMail.cpeCP}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Courriel">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Courriel
+        <input id="courrielSearchBoxCPMail" type='text'/>
+      </th>
+      <td *matCellDef="let cpMail" mat-cell> {{cpMail.cpeMail}}</td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+  <mat-paginator
+    (page)="getPaginatorData($event)"
+    [length]="length"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="showFirstLastButtons">
+  </mat-paginator>
+</div>
+
+
+

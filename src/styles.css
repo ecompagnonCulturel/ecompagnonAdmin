@@ -1,0 +1,156 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/*formulaire*/
+
+
+.title {
+  font-size: 22px;
+  text-align: center;
+  padding: 15px;
+  background-color: #3DC2FF;
+  color: white;
+}
+
+.material-icons.color_green { color: #B30B00; }
+.material-icons.color_white { color: #FFFFFF; }
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%!important;
+}
+.form-group{
+  margin-left: 2% !important;
+}
+
+.center{
+  margin-left:10% !important;
+
+}
+.centerbutton{
+  margin-left:8%;
+
+}
+
+
+.width{
+  width:500px;
+
+}
+
+ng-select.dropdown {
+  border: 10px solid black;
+}
+mat-card-subtitle
+{
+  color:#FF2525;
+}
+.right {
+  float: right;
+
+}
+mat-card-title{
+  background-color: #3DC2FF;
+  color: white;
+  height: 100% !important;
+}
+
+.buttonAn{
+  background-color: #F34F56;
+  color: white;
+  margin-left: 20% !important;
+}
+
+
+
+.buttonval:enabled {
+background-color:#3DC2FF!important;
+color: white;
+}
+
+.mat-option-text {
+overflow: auto;
+text-overflow: unset;
+}
+
+.close
+{
+float: right;
+top:-24px;
+right:-24px;
+}
+
+mat-form-field,.form-group
+{
+width: 80% !important;
+}
+
+.label{
+font-weight: bold;
+}
+
+.mat-option {
+margin: 1rem 0;
+overflow: visible;
+line-height: initial;
+word-wrap: break-word;
+white-space: pre-wrap;
+}
+.mat-option i {
+display: block;
+font-size: 1.5rem;
+opacity: 0.6;
+margin-left: 0.5rem;
+
+}
+
+
+/*Liste*/
+
+
+
+
+th.mat-header-cell {
+  text-align: center;
+  max-width: 300px;
+  background-color:#ECF4FF;
+  font-size:18px;
+  font-weight: bold;
+}
+.hidden-col {
+  display: none;
+}
+
+th.mat-header{
+  text-align: center;
+  max-width: 300px;
+  background-color:#ECF4FF;
+  font-size:18px;
+  font-weight: bold;
+}
+
+
+.material-icons.color_green { color: #75BC46; }
+.material-icons.color_white { color: #FFFFFF; }
+.material-icons.color_red { color: #FF2525; }
+.material-icons.color_blue{ color: #336791; }
+.material-icons.color_violet{ color: #7A00B9; }
+.material-icons.color_greeen{ color: #308E3B; }
+.material-icons.color_Turcois{ color: #3DC2FF; }
+.material-icons.opacity{ opacity: 20%!important; }
+
+.right {
+  float: right;
+
+}
+
+.pointer {cursor: pointer;}
+
+
+
+
+

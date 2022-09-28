@@ -1,0 +1,93 @@
+<div align='center'><h2>Liste des Ressources</h2></div>
+
+<div>
+
+  <div class="right">
+    <!--    <a routerLink="../add-session" onclick="openDialog()">-->
+    <a (click)="openDialog()" button style="cursor: pointer;">
+      <span class="material-icons color_green">
+       add_circle
+    </span>
+    </a>
+    <a (click)="uploadStudent()" button style="cursor: pointer;">
+      <span class="material-icons color_Turcois"  button style="cursor: pointer;" title="fichier excel">
+            upload
+            </span>
+    </a>
+  </div>
+  <table #exporter="matTableExporter" [dataSource]="dataSource" mat-table matSort matTableExporter>
+    <ng-container matColumnDef="Session" >
+      <th *matHeaderCellDef mat-header-cell hidden> Session
+        <input id="sessionSearchBoxR" type='text'/>
+      </th>
+      <td *matCellDef="let resource" mat-cell hidden> {{resource.ressSession.sessNom}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Desc">
+      <th *matHeaderCellDef mat-header-cell> Nom
+        <input id="desSearchBox" type='text'/>
+      </th>
+      <td *matCellDef="let resource" mat-cell> {{resource.ressDesc}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Type">
+      <th *matHeaderCellDef mat-header-cell> Type
+          <select id="typeSearchBox"  >
+            <option value="vide"> </option>
+            <option *ngFor="let type of types"  [value]="type.id">{{type.trdesc}}</option>
+          </select>
+      </th>
+      <td *matCellDef="let resource" mat-cell class="center">
+         <span class="material-icons blue ">
+                {{resource.ressType.travatar}}
+         </span>
+    </ng-container>
+    <ng-container matColumnDef="Url">
+      <th *matHeaderCellDef mat-header-cell >
+       Url
+      </th>
+      <td *matCellDef="let resource" mat-cell><a [href]=resource.ressUrl>{{resource.ressUrl}}</a> </td>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th *matHeaderCellDef mat-header-cell center></th>
+      <td *matCellDef="let etudiant" mat-cell>
+        <a><span (click)="editDialog(etudiant)" button class="material-icons color_blue" style="cursor: pointer;"
+                 title="éditer">
+                mode
+            </span>
+        </a>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let resource" mat-cell>
+        <a *ngIf="objectExist(resourceInUse,resource)==true">
+          <span class="material-icons color_red opacity" style="opacity:.5" title="Supprimer">
+              delete_forever
+            </span>
+
+        </a>
+        <a (click)="deleteRessource(resource.id)" *ngIf="objectExist(resourceInUse,resource)==false" button style="cursor: pointer;"
+           title="Supprimer">
+          <span class="material-icons color_red">
+              delete_forever
+            </span>
+
+        </a>
+      </td>
+
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+  <mat-paginator
+    (page)="getPaginatorData($event)"
+    [length]="length"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="showFirstLastButtons">
+  </mat-paginator>
+</div>
+
+
+

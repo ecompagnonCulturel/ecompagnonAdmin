@@ -1,0 +1,91 @@
+<div align='center'><h2>Liste des questionnaires</h2></div>
+
+<div>
+
+    <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" matSort>
+    <ng-container matColumnDef="session.sessNom">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Session
+        <input type='text'  id="sessionSearchBoxQ" />
+      </th>
+      <td mat-cell *matCellDef="let questionnaire"> {{questionnaire.session.sessNom}}</td>
+    </ng-container>
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Type
+        <input type='text'  id="typeSearchBoxR" />
+      </th>
+      <td mat-cell *matCellDef="let questionnaire"> {{questionnaire.type}}</td>
+    </ng-container>
+    <ng-container matColumnDef="groupEtudiant">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Groupes-test
+        <input type='text'  id="groupeSearchBox" />
+      </th>
+      <td mat-cell *matCellDef="let questionnaire">
+
+          <span *ngIf="questionnaire.type=='T0'|| questionnaire.type=='T2'" >
+            </span>
+        <span *ngIf="questionnaire.type!='T0'&& questionnaire.type!='T2'" >
+              {{questionnaire.groupEtudiant.groupName}}
+            </span>
+
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date début affichage
+        <input type='date'  id="sDateSearchBox"  (input)="change($event)"/>
+      </th>
+      <td mat-cell *matCellDef="let questionnaire"> {{questionnaire.startDate | date:'dd/MM/yyyy'}}</td>
+
+    </ng-container>
+    <ng-container matColumnDef="endDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Fin affichage
+        <input type='date'  id="eDateSearchBox"  (input)="change($event)"/>
+      </th>
+      <td mat-cell *matCellDef="let questionnaire">{{questionnaire.endDate | date:'dd/MM/yyyy'}}</td>
+
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let questionnaire">
+        <a >
+            <span class="material-icons color_blue" button style="cursor: pointer;" title="modifier/dupliquer" (click)="editDialog(questionnaire)">
+              mode
+            </span>
+
+        </a>
+      </td>
+
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let questionnaire">
+
+
+        <a *ngIf="objectExist(questionnaireRepUse,questionnaire)==true">
+          <span class="material-icons color_red opacity" style="opacity:.5" title="Supprimer">
+              delete_forever
+            </span>
+
+        </a>
+        <a  *ngIf="objectExist(questionnaireRepUse,questionnaire)==false" style="cursor: pointer;" title="Supprimer" (click)="deleteQuestionnaire(questionnaire.id,questionnaire.session.id)">
+          <span class="material-icons color_red">
+              delete_forever
+            </span>
+
+        </a>
+      </td>
+
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator
+    (page)="getPaginatorData($event)"
+    [length]="length"
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="showFirstLastButtons"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageIndex]="pageIndex">
+  </mat-paginator>
+</div>
+
+

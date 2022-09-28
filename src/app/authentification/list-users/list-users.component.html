@@ -1,0 +1,46 @@
+<div align='center'><h2>Liste des utilisateurs</h2></div>
+
+<div>
+  <table #exporter="matTableExporter" [dataSource]="dataSource" mat-table matSort matTableExporter>
+    <ng-container matColumnDef="Prenom">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Prenom
+        <input id="prenomSearchBox" type='text' />
+      </th>
+      <td *matCellDef="let user" mat-cell>{{user[0]}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Nom">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Nom
+        <input id="nomSearchBox" type='text'/>
+      </th>
+      <td *matCellDef="let user" mat-cell> {{user[1]}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Courriel">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Courriel
+      </th>
+      <td *matCellDef="let user" mat-cell> {{user[2]}}</td>
+    </ng-container>
+    <ng-container matColumnDef="CP">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> CP
+      </th>
+      <td *matCellDef="let user" mat-cell> {{user[3]}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Enabled">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Activé
+      </th>
+      <td *matCellDef="let user" mat-cell> {{user[4]}}</td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+  <mat-paginator
+    (page)="getPaginatorData($event)"
+    [length]="length"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="showFirstLastButtons">
+  </mat-paginator>
+</div>
+
+
+

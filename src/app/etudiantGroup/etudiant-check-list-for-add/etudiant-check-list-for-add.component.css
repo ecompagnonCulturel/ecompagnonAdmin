@@ -1,0 +1,91 @@
+table {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 500px;
+}
+th.mat-header-cell {
+  text-align: left;
+  max-width: 300px;
+  background-color:#ECF4FF;
+  font-size:18px;
+  font-weight: bold;
+}
+
+.hidden-col {
+  display: none;
+}
+
+
+.material-icons.color_green { color: #75BC46; }
+.material-icons.color_white { color: #FFFFFF; }
+.material-icons.color_red { color: #FF2525; }
+.material-icons.color_blue{ color: #336791; }
+.material-icons.color_violet{ color: #7A00B9; }
+.material-icons.color_greeen{ color: #308E3B; }
+.material-icons.color_Turcois{ color: #3DC2FF; }
+.material-icons.opacity{ opacity: 20%!important; }
+
+.right {
+  float: right;
+
+}
+.title {
+  font-size: 22px;
+  text-align: center;
+  padding: 15px;
+  background-color: #3DC2FF;
+  color: white;
+}
+.close
+{
+  float: right;
+  top:-24px;
+  right:-24px;
+}
+
+.pagination{
+   width: 100%;
+  float: right;
+  margin-bottom: 2%;
+}
+
+flex-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%!important;
+}
+.center{
+  margin-left:10% !important;
+
+}
+.buttonAn{
+  background-color: #F34F56;
+  color: white;
+  margin-left: 20% !important;
+}
+
+button{
+  height: 40px!important;
+  width: 30%!important;
+  border-radius: 10px!important;
+}
+.bouton{
+  width: 100%;
+}
+table {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 500px;
+}
+
+
+.buttonval:enabled {
+  background-color:#3DC2FF!important;
+  color: white;
+}
+:host ::ng-deep .mat-sort-header-container {
+  display: flex;
+  justify-content: center;
+}

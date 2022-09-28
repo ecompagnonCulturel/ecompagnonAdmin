@@ -1,0 +1,88 @@
+<div align='center'><h2>Liste des intentions de cours</h2></div>
+
+<div>
+
+  <div class="right">
+    <!--    <a routerLink="../add-session" onclick="openDialog()">-->
+    <a button (click)="openDialog()" style="cursor: pointer;">
+      <span class="material-icons color_green">
+       add_circle
+    </span>
+    </a>
+
+  </div>
+
+  <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" matSort>
+    <ng-container matColumnDef="ressource">
+      <th mat-header-cell *matHeaderCellDef > Ressource
+        <input type='text'  id="ressourceSearchBox" />
+      </th>
+      <td mat-cell *matCellDef="let intension" class="diff"> {{intension.coursResResource.ressDesc}}</td>
+    </ng-container>
+    <ng-container matColumnDef="cours">
+      <th mat-header-cell *matHeaderCellDef > Cours
+        <input type='text'  id="coursSearchBox" size="30" />
+      </th>
+      <td mat-cell *matCellDef="let intension"> {{intension.coursResCours.coursDes}}</td>
+    </ng-container>
+    <ng-container matColumnDef="prof">
+      <th mat-header-cell *matHeaderCellDef > Formateur
+        <input type='text'  id="profSearchBox"/>
+      </th>
+      <td mat-cell *matCellDef="let intension" class="diff"> {{intension.coursResProf.profFirstName+' '+intension.coursResProf.profLastName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="session">
+      <th mat-header-cell *matHeaderCellDef > Session
+        <input type='text'  id="sessionSearchBox"  />
+      </th>
+      <td mat-cell *matCellDef="let intension"> {{intension.coursResSession.sessNom}}</td>
+
+    </ng-container>
+    <ng-container matColumnDef="intension">
+      <th mat-header-cell *matHeaderCellDef  class="center"> Intentions
+
+      </th>
+      <td mat-cell *matCellDef="let intension" class="diff"> {{intension.coursResIntention}}</td>
+
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let intension">
+        <a>
+        <span class="material-icons color_blue" button style="cursor: pointer;" title="éditer" (click)="editDialog(intension)">
+                mode
+            </span>
+
+        </a>
+
+      </td>
+
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let intension">
+
+        <a button style="cursor: pointer;" title="Supprimer" (click)="deleteIntension(intension.id)">
+          <span class="material-icons color_red">
+              delete_forever
+            </span>
+
+        </a>
+      </td>
+
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator
+    (page)="getPaginatorData($event)"
+    [length]="length"
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="showFirstLastButtons"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageIndex]="pageIndex">
+  </mat-paginator>
+</div>
+
+

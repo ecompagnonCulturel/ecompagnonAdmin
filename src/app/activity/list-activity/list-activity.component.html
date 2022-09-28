@@ -1,0 +1,74 @@
+<div align='center'><h2>Liste des tests</h2></div>
+
+<div>
+
+  <div class="right">
+    <!--    <a routerLink="../add-session" onclick="openDialog()">-->
+    <a (click)="openDialog()" button style="cursor: pointer;">
+      <span class="material-icons color_green">
+       add_circle
+    </span>
+    </a>
+  </div>
+  <table #exporter="matTableExporter" [dataSource]="dataSource" mat-table matSort matTableExporter>
+    <ng-container matColumnDef="Session">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Session
+        <input id="sessionSearchBoxA" type='text' />
+      </th>
+      <td *matCellDef="let activity" mat-cell> {{activity.session.sessNom}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Activité">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Activité
+        <input id="descSearchBox" type='text'/>
+      </th>
+      <td *matCellDef="let activity" mat-cell> {{activity.actDesc}}</td>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let activity" mat-cell>
+        <a><span (click)="editDialog(activity)" button class="material-icons color_blue" style="cursor: pointer;"
+                 title="éditer">
+                mode
+            </span>
+        </a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let activity" mat-cell>
+        <a *ngIf="objectExist(activitiesInUse,activity)==true">
+          <span class="material-icons color_red opacity" style="opacity:.5" title="Supprimer">
+              delete_forever
+            </span>
+
+        </a>
+
+
+        <a (click)="deleteActivite(activity.id)" *ngIf="objectExist(activitiesInUse,activity)==false" button style="cursor: pointer;"
+           title="Supprimer">
+          <span class="material-icons color_red">
+              delete_forever
+            </span>
+
+        </a>
+      </td>
+
+    </ng-container>
+
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+  <mat-paginator
+    (page)="getPaginatorData($event)"
+    [length]="length"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="showFirstLastButtons">
+  </mat-paginator>
+</div>
+
+
+

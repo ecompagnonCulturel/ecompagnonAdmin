@@ -1,0 +1,64 @@
+<div >
+  <div  mat-dialog-title class="title">
+    {{data.titre}}
+    <div class="close">
+      <a ><span class="material-icons color_blue" button style="cursor: pointer;" title="fermer" mat-dialog-close >
+              close
+            </span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<mat-dialog-content>
+  <mat-card id="card" style="text-align: center;" >
+
+    <mat-card-subtitle>
+    </mat-card-subtitle>
+    <mat-card-content>
+      <form [formGroup]="fileUploadForm"  enctype="multipart/form-data">
+        <div class="flex-container">
+          <div class="form-group">
+
+          </div>
+        </div>
+        <button mat-button   style="margin-right:5px;"  class="buttonval right" (click)="exportExcel()">
+          Télécharger un modèle</button>
+        <div class="flex-container" >
+          <div class="form-group" hidden>
+            <h4 class="label">Session</h4>
+            <mat-form-field appearance="fill" class="width">
+              <mat-select  name="session" id="session" formControlName="session" class="form-control" >
+                <mat-option  *ngFor="let session of sessions"  [value]="session.id">{{session.sessNom}} </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div *ngIf="(session.dirty|| session.touched) && session.errors" class="errors">
+              <span *ngIf="session.errors?.required">Session obligatoire</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-container">
+          <div class="form-group">
+            <h4 class="label">Fichier</h4>
+             <mat-form-field>
+              <ngx-mat-file-input formControlName="myfile" (change)="onFileSelect($any($event).target.files)"
+                                  [multiple]="multiple" [accept]="accept" [color]="color"
+                                  placeholder="Choisir le fichier">
+              </ngx-mat-file-input>
+            </mat-form-field>
+          </div>
+
+
+        </div>
+        <button mat-button   style="margin-right:5px;" type="reset" class="buttonAn">Annuler</button>
+        <button  [disabled]="fileUploadForm.invalid"  type="submit"  class="buttonval" (click)="onFormSubmit()" >Upload
+        </button>
+
+      </form>
+    </mat-card-content>
+    <mat-card-footer>
+
+    </mat-card-footer>
+  </mat-card>
+</mat-dialog-content>

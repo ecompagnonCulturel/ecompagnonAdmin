@@ -1,0 +1,81 @@
+
+<div >
+  <div  mat-dialog-title class="title">
+    {{data.titre}}
+    <div class="close">
+      <a ><span class="material-icons color_blue" button style="cursor: pointer;" title="fermer" mat-dialog-close >
+              close
+            </span>
+      </a>
+    </div>
+  </div>
+
+
+</div>
+
+
+<mat-dialog-content>
+  <mat-card id="card"  >
+    <mat-card-subtitle>	  </mat-card-subtitle>
+    <mat-card-content>
+      <form [formGroup]="addFormateurForm"    >
+        <div class="container">
+
+          <div class="flex-container " >
+            <div class="form-groupCol center">
+              <h4 class="label">Prenom</h4>
+              <mat-form-field appearance="fill" class="width">
+                <input  matInput  name="profFirstName" id="profFirstName" formControlName="profFirstName"
+                        class="form-control" required/>
+              </mat-form-field>
+              <div *ngIf="(profFirstName.dirty|| profFirstName.touched) && profFirstName.errors" class="errors">
+                <span *ngIf="profFirstName.errors?.required">Prenom obligatoire</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-container" >
+            <div class="form-groupCol center">
+              <h4 class="label">Nom</h4>
+              <mat-form-field appearance="fill" class="width">
+                <input matInput  name="profLastName" id="profLastName" formControlName="profLastName"
+                       class="form-control"
+                        required/>
+              </mat-form-field>
+              <div *ngIf="(profLastName.dirty|| profLastName.touched) && profLastName.errors" class="errors">
+                <span *ngIf="profLastName.errors?.required">Nom obligatoire</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-container" >
+            <div class="form-groupCol center">
+              <h4 class="labelc">Courriel</h4>
+              <mat-form-field appearance="fill" class="width">
+                <input matInput  name="profContact" id="profContact" formControlName="profContact" class="form-control"/>
+              </mat-form-field>
+              <div *ngIf="(profContact.dirty|| profContact.touched) && profContact.errors" class="errors">
+                <span *ngIf="profContact.errors?.email">Courriel invalide</span>
+              </div>
+            </div>
+          </div>
+         <!-- <div class="flex-container" >
+            <div class="form-groupCol center">
+              <h4 class="label">Adresse</h4>
+              <mat-form-field appearance="fill" class="width">
+                <input matInput  name="profAdresse" id="profAdresse" formControlName="profAdresse" class="form-control"/>
+              </mat-form-field>
+
+            </div>
+          </div>-->
+        </div>
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="flex-container">
+    <button mat-button mat-dialog-close  style="margin-right:5px;" type="reset" class="buttonAn">Annuler</button>
+    <button   [disabled]="addFormateurForm.invalid" style="margin-right:5px;" type="submit" (click)="addFormateur()" class="buttonval">Valider</button>
+  </div>
+</mat-dialog-actions>
+

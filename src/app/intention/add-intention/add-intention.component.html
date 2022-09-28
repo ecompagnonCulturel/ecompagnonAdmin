@@ -1,0 +1,105 @@
+
+<div >
+  <div  mat-dialog-title class="title">
+    {{data.titre}}
+    <div class="close">
+      <a ><span class="material-icons color_blue" button style="cursor: pointer;" title="fermer" mat-dialog-close >
+              close
+            </span>
+      </a>
+    </div>
+  </div>
+
+
+</div>
+
+<mat-dialog-content>
+  <mat-card id="card"  >
+    <mat-card-subtitle>	  </mat-card-subtitle>
+    <mat-card-content>
+      <form [formGroup]="addIntentionForm"    >
+        <div class="container">
+
+          <div class="flex-container " >
+            <div class="form-groupCol center">
+              <h4 class="label">Session</h4>
+              <mat-form-field appearance="fill" class="width">
+                <mat-select  name="coursResSession" id="coursResSession" formControlName="coursResSession" class="form-control" required>
+                  <input (keyup)="onKeySession($event.target.value)">
+                  <mat-option  *ngFor="let session of sessionsFilter"  [value]="session.id">{{session.sessNom}} </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div *ngIf="(coursResSession.dirty|| coursResSession.touched) && coursResSession.errors" class="errors">
+                <span *ngIf="coursResSession.errors?.required">session obligatoire</span>
+              </div>
+            </div>
+
+            <div class="form-groupCol center">
+              <h4 class="label">Ressource</h4>
+              <mat-form-field appearance="fill" class="width">
+                <mat-select  name="coursResResource" id="coursResResource" formControlName="coursResResource" class="form-control" required>
+                  <input (keyup)="onKeyResource($event.target.value)">
+                  <mat-option  *ngFor="let resource of resourcesFilter"  [value]="resource.id">{{resource.ressDesc}} </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div *ngIf="(coursResResource.dirty|| coursResResource.touched) && coursResResource.errors" class="errors">
+                <span *ngIf="coursResResource.errors?.required">ressource obligatoire</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-container" >
+            <div class="form-groupCol center">
+              <h4 class="label">Formateur</h4>
+              <mat-form-field appearance="fill" class="width">
+                <mat-select  name="coursResProf" id="coursResProf" formControlName="coursResProf" class="form-control" required>
+                  <input (keyup)="onKeyProf($event.target.value)">
+                  <mat-option  *ngFor="let prof of profsFilter"  [value]="prof.id">{{prof.profFirstName+' '+prof.profLastName}} </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div *ngIf="(coursResProf.dirty|| coursResProf.touched) && coursResProf.errors" class="errors">
+                <span *ngIf="(coursResProf.errors?.required)">
+                 Formateur Ologatoire</span>
+              </div>
+            </div>
+            <div class="form-groupCol center">
+              <h4 class="label">Cours</h4>
+              <mat-form-field appearance="fill" class="width">
+                <mat-select  name="coursResCours" id="coursResCours" formControlName="coursResCours" class="form-control" required>
+                  <input (keyup)="onKeyCours($event.target.value)">
+                  <mat-option  *ngFor="let c of coursFilter"  [value]="c.id">{{c.coursDes}} </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div *ngIf="(coursResCours.dirty|| coursResCours.touched) && coursResCours.errors" class="errors">
+                <span *ngIf="(coursResCours.errors?.required)">
+                 Cours </span>
+              </div>
+            </div>
+          </div>
+          </div>
+
+        <div class="flex-container" >
+          <div class="form-group">
+            <h4 class="labelc">Intention</h4>
+            <mat-form-field appearance="fill" class="width">
+              <textarea matInput rows="10"   name="coursResIntention" id="coursResIntention" formControlName="coursResIntention" class="form-control"
+                      required>
+              </textarea>
+            </mat-form-field>
+
+            <div *ngIf="(coursResIntention.dirty|| coursResIntention.touched) && coursResIntention.errors" class="errors">
+              <span *ngIf="coursResIntention.errors?.required">Intention obligatoire</span>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="flex-container">
+    <button mat-button mat-dialog-close  style="margin-right:5px;" type="reset" class="buttonAn">Annuler</button>
+    <button   [disabled]="addIntentionForm.invalid" style="margin-right:5px;" type="submit" (click)="addIntention()" class="buttonval">Valider</button>
+  </div>
+</mat-dialog-actions>
+

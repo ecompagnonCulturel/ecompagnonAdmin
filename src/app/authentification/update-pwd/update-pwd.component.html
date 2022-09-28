@@ -1,0 +1,75 @@
+<div >
+  <div  mat-dialog-title class="title">
+    modifier votre mot de passe
+    <div class="close">
+      <a ><span class="material-icons color_blue" button style="cursor: pointer;" title="fermer" mat-dialog-close id="close"  >
+              close
+            </span>
+      </a>
+    </div>
+  </div>
+
+</div>
+<mat-card id="card" style="text-align: center;" >
+  <mat-card-content>
+    <form [formGroup]="updatePasswordForm"   class="center" >
+      <div class="flex-container">
+        <div class="form-group">
+          <h4 >Ancien Mot de passe</h4>
+          <mat-form-field appearance="fill" class="width">
+            <input  [type]="oldPasswordType" matInput  name="oldPasswordAUsers"  autocomplete="on" id="oldPasswordAUsers" formControlName="oldPasswordAUsers"
+                    class="form-control" required/>
+            <mat-icon matSuffix  [color]="oldPassswordIsShown===true?'secondary':'red'"
+                      [style]="oldPassswordIsShown===true?'opacity:100%':'opacity:50%'" item-end
+                      (click)="oldPasswordVisible()" class="pointer">visibility</mat-icon>
+
+          </mat-form-field>
+          <div *ngIf="(oldPasswordAUsers.dirty|| oldPasswordAUsers.touched) && oldPasswordAUsers.errors" class="errors ">
+            <span *ngIf="oldPasswordAUsers.errors?.required">Ancien mot de passe obligatoire</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex-container">
+        <div class="form-group">
+          <h4>Nouveau Mot de passe</h4>
+          <mat-form-field appearance="fill" class="width">
+            <input  [type]="passwordType" matInput  name="passwordAUsers" autocomplete="on" id="passwordAUsers" formControlName="passwordAUsers"
+                    class="form-control" required/>
+            <mat-icon matSuffix  [color]="passswordIsShown===true?'secondary':'red'"
+                      [style]="passswordIsShown===true?'opacity:100%':'opacity:50%'" item-end
+                      (click)="PasswordVisible()" class="pointer">visibility</mat-icon>
+
+          </mat-form-field>
+          <div *ngIf="(passwordAUsers.dirty|| passwordAUsers.touched) && passwordAUsers.errors" class="errors ">
+            <span *ngIf="passwordAUsers.errors?.required">Nouveau mot de passe obligatoire</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <div class="form-group">
+          <h4>Confirmation du nouveau Mot de passe</h4>
+          <mat-form-field appearance="fill" class="width">
+            <input  [type]="cpasswordType" matInput  autocomplete="on" name="confirmpasswordAUsers" id="co" formControlName="confirmpasswordAUsers"
+                    class="form-control" required/>
+            <mat-icon matSuffix  [color]="cpassswordIsShown===true?'secondary':'red'"
+                      [style]="cpassswordIsShown===true?'opacity:100%':'opacity:50%'" item-end
+                      (click)="cPasswordVisible()" class="pointer">visibility</mat-icon>
+
+          </mat-form-field>
+          <div *ngIf="(confirmpasswordAUsers.dirty|| confirmpasswordAUsers.touched) && confirmpasswordAUsers.errors" class="errors ">
+            <span *ngIf="confirmpasswordAUsers.errors?.required">Confirmation du nouveau mot de passe obligatoire</span>
+            <span *ngIf="confirmpasswordAUsers.errors.mustMatch"> Les deux mots de passe doivent  correspondre</span>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </mat-card-content>
+  <mat-dialog-actions>
+    <div class="flex-container">
+      <button mat-button mat-dialog-close  style="margin-right:5px;" type="reset" class="buttonAn">Annuler</button>
+      <button   [disabled]="updatePasswordForm.invalid" style="margin-right:5px;" type="submit" (click)="update()" class="buttonval">Valider</button>
+    </div>
+  </mat-dialog-actions>
+</mat-card>

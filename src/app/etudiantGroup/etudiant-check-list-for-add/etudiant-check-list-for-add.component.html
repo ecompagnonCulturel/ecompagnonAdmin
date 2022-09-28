@@ -1,0 +1,90 @@
+<div >
+  <div  mat-dialog-title class="title">
+    {{data.titre}}
+    <div class="close">
+      <a ><span class="material-icons color_white" button style="cursor: pointer;" title="fermer" mat-dialog-close >
+              close
+            </span>
+      </a>
+    </div>
+  </div>
+</div >
+
+<form [formGroup]="etudiantform" (ngSubmit)="submit()">
+  <mat-dialog-content>
+    <mat-card id="card" style="text-align: center;" >
+      <mat-card-subtitle>	  </mat-card-subtitle>
+      <mat-card-content>
+        <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" matSort>
+          <mat-form-field class="form-field">
+            <input matInput />
+          </mat-form-field>
+          <ng-container matColumnDef="etudFirstName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Prenom
+              <input type='text'  id="prenomSearchBox" />
+            </th>
+            <td mat-cell *matCellDef="let Etudiant"> {{Etudiant.etudFirstName}}</td>
+          </ng-container>
+          <ng-container matColumnDef="etudLastName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom
+
+              <input type='text'  id="nomSearchBox" />
+
+            </th>
+            <td mat-cell *matCellDef="let Etudiant"> {{Etudiant.etudLastName}}</td>
+          </ng-container>
+          <ng-container matColumnDef="etudCP">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Code Permanent
+              <input type='text'  id="cpSearchBox" />
+            </th>
+            <td mat-cell *matCellDef="let Etudiant">{{Etudiant.etudCP}} </td>
+          </ng-container>
+          <ng-container matColumnDef="check" >
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let checkFormArray; let i = index" formArrayName="check">
+              <!-- <input type="checkbox" [formControlName]="i" *ngIf="ObjectExist(etudiantByGroup,Etudiant)==false">
+             -->  <input type="checkbox" [formControlName]="i"  value="true">
+
+            </td>
+
+
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true" ></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+      </mat-card-content>
+      <mat-card-actions>
+
+      </mat-card-actions>
+      <mat-card-footer>
+
+      </mat-card-footer>
+    </mat-card>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="pagination">
+      <mat-paginator
+        (page)="getPaginatorData($event)"
+        [length]="length"
+        [pageSize]="pageSize"
+        [showFirstLastButtons]="showFirstLastButtons"
+        [pageSizeOptions]="pageSizeOptions"
+        [pageIndex]="pageIndex">
+      </mat-paginator>
+    </div>
+
+    <div class="flex-container bouton">
+      <button mat-button mat-dialog-close  style="margin-right:5px;" type="reset" class="buttonAn">Annuler</button>
+      <button   [disabled]="etudiantform.invalid" style="margin-right:5px;" type="submit"  class="buttonval">Valider</button>
+
+    </div>
+
+  </mat-dialog-actions>
+</form>
+
+
+
+
+

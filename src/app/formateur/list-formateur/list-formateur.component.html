@@ -1,0 +1,70 @@
+<div align='center'><h2>Liste des Formateurs</h2></div>
+
+<div>
+
+  <div class="right">
+    <!--    <a routerLink="../add-session" onclick="openDialog()">-->
+    <a (click)="openDialog()" button style="cursor: pointer;">
+      <span class="material-icons color_green">
+       add_circle
+    </span>
+    </a>
+  </div>
+  <table #exporter="matTableExporter" [dataSource]="dataSource" mat-table matSort matTableExporter>
+    <ng-container matColumnDef="Prenom">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Prenom
+        <input id="prenomSearchBoxPr" type='text'/>
+      </th>
+      <td *matCellDef="let prof" mat-cell> {{prof.profFirstName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Nom">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Nom
+        <input id="nomSearchBoxPr" type='text'/>
+      </th>
+      <td *matCellDef="let prof" mat-cell> {{prof.profLastName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let prof" mat-cell>
+        <a><span (click)="editDialog(prof)" button class="material-icons color_blue" style="cursor: pointer;"
+                 title="éditer">
+                mode
+            </span>
+        </a>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let prof" mat-cell>
+        <a *ngIf="objectExist(profInUse,prof)==true">
+          <span class="material-icons color_red opacity" style="opacity:.5" title="Supprimer">
+              delete_forever
+            </span>
+
+        </a>
+        <a (click)="deleteFormateur(prof.id)" *ngIf="objectExist(profInUse,prof)==false" button style="cursor: pointer;"
+           title="Supprimer">
+          <span class="material-icons color_red">
+              delete_forever
+            </span>
+
+        </a>
+      </td>
+
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+  <mat-paginator
+    (page)="getPaginatorData($event)"
+    [length]="length"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="showFirstLastButtons">
+  </mat-paginator>
+</div>
+
+
+

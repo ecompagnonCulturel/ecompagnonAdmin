@@ -1,0 +1,90 @@
+
+<div >
+  <div  mat-dialog-title class="title">
+    {{data.titre}}
+    <div class="close">
+      <a ><span class="material-icons color_blue" button style="cursor: pointer;" title="fermer" mat-dialog-close >
+              close
+            </span>
+      </a>
+    </div>
+  </div>
+
+
+</div>
+
+
+<mat-dialog-content>
+  <mat-card id="card"  >
+    <mat-card-subtitle>	  </mat-card-subtitle>
+    <mat-card-content>
+      <form [formGroup]="addStudentForm"    >
+        <div class="container">
+
+          <div class="flex-container " >
+            <div class="form-groupCol center">
+              <h4 class="label">Prenom</h4>
+              <mat-form-field appearance="fill" class="width">
+              <input  matInput  name="etudFirstName" id="etudFirstName" formControlName="etudFirstName"
+                      class="form-control"   (blur)="setEmailValue()"required/>
+              </mat-form-field>
+              <div *ngIf="(etudFirstName.dirty|| etudFirstName.touched) && etudFirstName.errors" class="errors">
+                <span *ngIf="etudFirstName.errors?.required">Prenom obligatoire</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-container" >
+            <div class="form-groupCol center">
+              <h4 class="label">Nom</h4>
+              <mat-form-field appearance="fill" class="width">
+              <input matInput  name="etudLastName" id="etudLastName" formControlName="etudLastName" class="form-control"
+                     (blur)="setEmailValue()" required/>
+              </mat-form-field>
+              <div *ngIf="(etudLastName.dirty|| etudLastName.touched) && etudLastName.errors" class="errors">
+                <span *ngIf="etudLastName.errors?.required">Nom obligatoire</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-container" >
+            <div class="form-groupCol center">
+              <h4 class="labelc">Code Permanent</h4>
+              <mat-form-field appearance="fill" class="width">
+              <input matInput  name="etudCP" id="etudCP" formControlName="etudCP" class="form-control"
+                     oninput="this.value = this.value.toUpperCase()" [maxLength]="12" [minlength]="12" required/>
+              </mat-form-field>
+              <div *ngIf="(etudCP.dirty|| etudCP.touched) && etudCP.errors" class="errors">
+                <span *ngIf="(etudCP.errors?.required)||(etudCP.errors?.minlength)||(etudCP.errors?.maxLength)">
+                  Le Code permanent prend obligatoirement 12 caractères </span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-container" >
+            <div class="form-groupCol center">
+
+              <h4 class="label">Courriel</h4>
+              <mat-form-field appearance="fill" class="width">
+              <input matInput  name="etudAdresse" id="etudAdresse" formControlName="etudAdresse" class="form-control"
+                     oninput="this.value = this.value.toLowerCase()" required/>
+              </mat-form-field>
+                <div>
+                <span>{{message}}</span>
+              </div>
+
+              <div *ngIf="(etudAdresse.dirty) && etudAdresse.errors" class="errors">
+                <span *ngIf="etudAdresse.errors?.required||etudAdresse.errors?.invalidMail||etudAdresse.errors?.email">Courriel de l'uqtr obligatoire</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="flex-container">
+    <button mat-button mat-dialog-close  style="margin-right:5px;" type="reset" class="buttonAn">Annuler</button>
+    <button   [disabled]="addStudentForm.invalid" style="margin-right:5px;" type="submit" (click)="addStudent()" class="buttonval">Valider</button>
+  </div>
+</mat-dialog-actions>
+

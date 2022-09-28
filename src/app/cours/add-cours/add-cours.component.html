@@ -1,0 +1,72 @@
+
+<div >
+  <div  mat-dialog-title class="title">
+    {{data.titre}}
+    <div class="close">
+      <a ><span class="material-icons color_blue" button style="cursor: pointer;" title="fermer" mat-dialog-close >
+              close
+            </span>
+      </a>
+    </div>
+  </div>
+
+
+</div>
+
+
+<mat-dialog-content>
+  <mat-card id="card"  >
+    <mat-card-subtitle>	  </mat-card-subtitle>
+    <mat-card-content>
+      <form [formGroup]="addCoursForm"    >
+        <div class="container">
+
+          <div class="flex-container " >
+            <div class="form-groupCol center">
+              <h4 class="label">Sigle</h4>
+              <mat-form-field appearance="fill" class="width">
+                <input  matInput  name="coursNomCourt" id="coursNomCourt" formControlName="coursNomCourt"
+                        class="form-control" required/>
+              </mat-form-field>
+              <div *ngIf="(coursNomCourt.dirty|| coursNomCourt.touched) && coursNomCourt.errors" class="errors">
+                <span *ngIf="coursNomCourt.errors?.required">Sigle obligatoire</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-container" >
+            <div class="form-groupCol center">
+              <h4 class="label">Titre raccourcis</h4>
+              <mat-form-field appearance="fill" class="width">
+                <input matInput  name="coursNomLong" id="coursNomLong" formControlName="coursNomLong"
+                       class="form-control"
+                       required/>
+              </mat-form-field>
+              <div *ngIf="(coursNomLong.dirty|| coursNomLong.touched) && coursNomLong.errors" class="errors">
+                <span *ngIf="coursNomLong.errors?.required">Court nom obligatoire</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-container" >
+            <div class="form-groupCol center">
+              <h4 class="labelc">Titre complet</h4>
+              <mat-form-field appearance="fill" class="width">
+                <input matInput  name="coursDes" id="coursDes" formControlName="coursDes" class="form-control"/>
+              </mat-form-field>
+              <div *ngIf="(coursDes.dirty|| coursDes.touched) && coursDes.errors" class="errors">
+                <span *ngIf="coursDes.errors?.required">Long nom obligatoire</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="flex-container">
+    <button mat-button mat-dialog-close  style="margin-right:5px;" type="reset" class="buttonAn">Annuler</button>
+    <button   [disabled]="addCoursForm.invalid" style="margin-right:5px;" type="submit" (click)="addCours()" class="buttonval">Valider</button>
+  </div>
+</mat-dialog-actions>
+

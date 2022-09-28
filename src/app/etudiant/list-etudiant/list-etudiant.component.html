@@ -1,0 +1,93 @@
+<div align='center'><h2>Liste des Etudiants</h2></div>
+
+<div>
+
+  <div class="right">
+    <!--    <a routerLink="../add-session" onclick="openDialog()">-->
+    <a (click)="openDialog()" button style="cursor: pointer;">
+      <span class="material-icons color_green">
+       add_circle
+    </span>
+    </a>
+    <a (click)="uploadStudent()" button style="cursor: pointer;">
+      <span class="material-icons color_Turcois"  button style="cursor: pointer;" title="fichier excel">
+            upload
+            </span>
+    </a>
+    <a button style="cursor: pointer;" title="Liste CPMail" (click)=" listCpMail()">
+               <span class="material-icons color_Turcois">
+              view_list
+              </span>
+    </a>
+
+  </div>
+  <table #exporter="matTableExporter" [dataSource]="dataSource" mat-table matSort matTableExporter>
+    <ng-container matColumnDef="Prenom">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Prenom
+        <input id="prenomSearchBox" type='text'/>
+      </th>
+      <td *matCellDef="let etudiant" mat-cell> {{etudiant.etudFirstName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Nom">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Nom
+        <input id="nomSearchBox" type='text'/>
+      </th>
+      <td *matCellDef="let etudiant" mat-cell> {{etudiant.etudLastName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="CP">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> CP
+        <input id="cpSearchBox" type='text'/>
+      </th>
+      <td *matCellDef="let etudiant" mat-cell> {{etudiant.etudCP}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Courriel">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Courriel
+
+      </th>
+      <td *matCellDef="let etudiant" mat-cell> {{etudiant.etudAdresse}}</td>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let etudiant" mat-cell>
+        <a><span (click)="editDialog(etudiant)" button class="material-icons color_blue" style="cursor: pointer;"
+                 title="éditer">
+                mode
+            </span>
+        </a>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let etudiant" mat-cell>
+        <a *ngIf="objectExist(etudiantInUse,etudiant)==true">
+          <span class="material-icons color_red opacity" style="opacity:.5" title="Supprimer">
+              delete_forever
+            </span>
+
+        </a>
+        <a (click)="deleteEtudiant(etudiant.id)" *ngIf="objectExist(etudiantInUse,etudiant)==false" button style="cursor: pointer;"
+           title="Supprimer">
+          <span class="material-icons color_red">
+              delete_forever
+            </span>
+
+        </a>
+      </td>
+
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+  <mat-paginator
+    (page)="getPaginatorData($event)"
+    [length]="length"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="showFirstLastButtons">
+  </mat-paginator>
+</div>
+
+
+

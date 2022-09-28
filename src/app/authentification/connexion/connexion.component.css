@@ -1,0 +1,196 @@
+
+
+.title {
+  font-size: 22px;
+  text-align: center;
+  background-color: #FFFFFF;
+  color: black;
+  height: 5%;
+  margin-top: 8%;
+}
+
+.material-icons.color_green { color: #B30B00; }
+.material-icons.color_white { color: #FFFFFF; }
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%!important;
+  /* background-color: #3DC2FF!important;*/
+
+}
+
+.pwd{
+
+  width: 30%;
+  margin-left: 35%;
+
+}
+.form-group{
+  margin-left: 2% !important;
+  background-color: white;
+}
+
+.center{
+  margin-left:10% !important;
+
+}
+.centerbutton{
+  margin-left:8%;
+
+}
+/*
+
+
+.half-width{
+  width:240px;
+
+}
+.width-group{
+  width:1000px;
+
+}
+
+mat-select{
+  width:300% !important;
+  background-color: #F5F5F5 !important;
+  /*font-size: 10px !important;
+}
+*/
+
+.width{
+  width:500px;
+
+}
+
+
+ng-select.dropdown {
+  border: 10px solid black;
+}
+mat-card-subtitle
+{
+  margin-top: 2%;
+}
+.right {
+  float: right;
+
+}
+mat-card-title{
+  background-color: #3DC2FF;
+  color: white;
+  height: 100% !important;
+}
+.buttonAn{
+  background-color: #F34F56;
+  color: white;
+  /* // margin-left: 2% !important;*/
+}
+
+button{
+  height: 40px!important;
+  width: 30%!important;
+  border-radius: 10px!important;
+  margin-left: 35%;
+}
+
+.buttonval:enabled {
+  background-color:#3DC2FF!important;
+  color: white;
+}
+
+.buttonval {
+  font-size: 20px;
+}
+
+
+
+.mat-option-text {
+  overflow: auto;
+  text-overflow: unset;
+}
+
+.close
+{
+  float: right;
+  top:-24px;
+  right:-24px;
+}
+
+mat-form-field,.form-group
+{
+  width: 80% !important;
+}
+
+.label{
+  font-weight: bold;
+}
+
+.mat-option {
+  margin: 1rem 0;
+  overflow: visible;
+  line-height: initial;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+.mat-option i {
+  display: block;
+  font-size: 1.5rem;
+  opacity: 0.6;
+  margin-left: 0.5rem;
+
+}
+
+mat-card{
+  /*border: solid;*/
+  margin-top: 10%;
+  margin-left: 25%;
+  width: 50%;
+  background-color: #ECF4FF;
+}
+mat-toolbar-row{
+  background-color: #016935;
+  color: #FFFFFF;
+  padding-left: 40%;
+}
+mat-card-content{
+  margin-top: 2%;
+}
+
+
+mat-card-footer{
+  margin-bottom: 2%;
+  width: 100%;
+
+}
+mat-toolbar-row{
+  margin-left: 1%;
+  font-size: 20px;
+}
+
+.titre
+{
+  width: 50%;
+  float: left;
+  color: #3DC2FF;
+  padding-left: 2%;
+}
+.errors{
+  color: #FF2525;
+}
+
+mat-icon{
+  color: #3DC2FF;
+}
+
+mat-toolbar
+{
+  width: 98%;
+  background-color:white ;
+}
+.entete{
+  background-color:#FFFFFF;
+  color: white;
+  padding: 1%;
+  width: 98%;
+  height: auto;
+}

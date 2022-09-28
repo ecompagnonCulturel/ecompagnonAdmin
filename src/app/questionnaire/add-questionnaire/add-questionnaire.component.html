@@ -1,0 +1,121 @@
+
+<div >
+     <div  mat-dialog-title class="title">
+    {{data.titre}}
+       <div class="close">
+         <a ><span class="material-icons color_blue" button style="cursor: pointer;" title="fermer" mat-dialog-close >
+              close
+            </span>
+         </a>
+       </div>
+  </div>
+
+
+</div>
+
+
+<mat-dialog-content>
+  <mat-card id="card" style="text-align: center;" >
+    <mat-card-subtitle>	  </mat-card-subtitle>
+    <mat-card-content>
+      <!--    (ngSubmit)="onSubmit()" enctype="multipart/form-data"-->
+      <form [formGroup]="addQuestionnaireForm"  (ngSubmit)="onSubmit()" class="center" >
+        <div class="container">
+        <div class="flex-container center">
+          <div class="form-group">
+            <h4 class="label">Action</h4>
+            <mat-form-field appearance="fill" class="width">
+              <mat-select  name="action" id="action" formControlName="action" class="form-control" required>
+                <mat-option [value]="1">Modifier</mat-option>
+                <mat-option [value]="2">Créer </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="flex-container">
+            <div class="form-group">
+            <h4 class="label">Session</h4>
+            <mat-form-field appearance="fill" class="width">
+              <mat-select  name="session" id="session" formControlName="session" class="form-control">
+                <mat-option [value]=""></mat-option>
+                <mat-option  *ngFor="let sess of session"  [value]="sess.id" (onSelectionChange)="getAllGroupeEtudiantBySession($event); this.getActiviteBySession($event);">{{sess.sessNom}} </mat-option>
+              </mat-select>
+             </mat-form-field>
+          </div>
+          <div class="form-group">
+            <h4 class="label">Type</h4>
+            <mat-form-field appearance="fill" class="width">
+              <mat-select  name="type" id="type" formControlName="type" class="form-control" required>
+                <mat-option value="T0">T0 </mat-option>
+                <mat-option value="T11">T1.1 </mat-option>
+                <mat-option value="T12">T1.2 </mat-option>
+                <mat-option value="T2">T2 </mat-option>
+                <mat-option value="T3">T3 </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+         <div class="flex-container">
+           <div class="form-group">
+             <h4 class="label">Groupe</h4>
+             <mat-form-field appearance="fill" class="width">
+               <mat-select  name="groupEtudiant" id="groupEtudiant" formControlName="groupEtudiant" class="form-control" required>
+                 <mat-option [value]="">Tous</mat-option>
+                 <mat-option  *ngFor="let group of etudiantGroup"  [value]="group.id">{{group.groupName}} </mat-option>
+
+               </mat-select>
+             </mat-form-field>
+           </div>
+
+           <div class="form-group">
+            <h4 class="label">Activité</h4>
+            <mat-form-field appearance="fill" class="width">
+              <mat-select  name="activite" id="activite" formControlName="activite" class="form-control">
+                <mat-option [value]=""> </mat-option>
+                <mat-option  *ngFor="let activi of activite"  [value]="activi.id">{{activi.actDesc}} </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+         </div>
+
+        <div class="flex-container">
+
+          <div class="form-group">
+            <h4 class="label">Date de début affichage</h4>
+            <mat-form-field appearance="fill" class="width" >
+              <mat-label>Date  début</mat-label>
+              <input matInput [matDatepicker]="picker"  name="startDate" id="startDate" formControlName="startDate"  class="form-control ">
+              <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <h4 class="label">Date de fin affichage</h4>
+            <mat-form-field appearance="fill" class="width" >
+              <mat-label>Date de fin</mat-label>
+              <input matInput [matDatepicker]="picker1"  name="endDate" id="endDate" formControlName="endDate"  class="form-control ">
+              <mat-datepicker-toggle matSuffix [for]="picker1">
+                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        </div>
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="flex-container center">
+    <button mat-button mat-dialog-close  style="margin-right:5px;" type="reset" class="buttonAn">Annuler</button>
+    <button   [disabled]="addQuestionnaireForm.invalid" style="margin-right:5px;" type="submit" (click)="addQuestionnaire()" class="buttonval">Valider</button>
+
+  </div>
+</mat-dialog-actions>

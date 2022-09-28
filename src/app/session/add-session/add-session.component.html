@@ -1,0 +1,76 @@
+<div class="title">
+  {{data.titre}}
+  <div class="close">
+    <a ><span class="material-icons color_blue" button style="cursor: pointer;" title="fermer" mat-dialog-close >
+              close
+            </span>
+    </a>
+  </div>
+</div>
+<mat-dialog-content>
+  <mat-card id="card" style="text-align: center;" >
+    <mat-card-subtitle>	  </mat-card-subtitle>
+    <mat-card-content>
+      <!--    (ngSubmit)="onSubmit()" enctype="multipart/form-data"-->
+      <form [formGroup]="addSessionForm"  (ngSubmit)="onSubmit()" class="center" >
+        <div class="container">
+        <div class="flex-containerRow">
+          <div >
+            <h4 class="label">Nom Session</h4>
+            <mat-form-field appearance="fill" class="width">
+            <mat-select  name="sessNom" id="sessNom" formControlName="sessNom" class="form-control" required>
+              <mat-option value="Hiver">Hiver </mat-option>
+              <mat-option value="Ete">Ete </mat-option>
+              <mat-option value="Automne">Automne </mat-option>
+            </mat-select>
+            </mat-form-field>
+          </div>
+          <div >
+            <h4 class="label">Année</h4>
+            <mat-form-field appearance="fill" >
+              <mat-label>Année</mat-label>
+              <input matInput  name="sessYear" id="sessYear" formControlName="sessYear"  class="form-control " type="tel"  maxlength="4">
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="flex-containerRow">
+
+          <div >
+            <h4 class="label">Date de début</h4>
+            <mat-form-field appearance="fill" class="width" >
+              <mat-label>Date  début</mat-label>
+              <input matInput [matDatepicker]="picker"  (dateInput)="showDateeValue($event.value)" name="sessStart" id="sessStart" formControlName="sessStart"  class="form-control ">
+              <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div>
+            <h4 class="label">Date de fin</h4>
+            <mat-form-field appearance="fill" class="width" >
+              <mat-label>Date de fin</mat-label>
+              <input matInput [matDatepicker]="picker1"  name="sessEnd" id="sessEnd" formControlName="sessEnd"  class="form-control ">
+              <mat-datepicker-toggle matSuffix [for]="picker1">
+                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        </div>
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+
+  <div class="flex-container ">
+    <button mat-button mat-dialog-close  style="margin-right:5px;" type="reset" class="buttonAn">Annuler</button>
+    <button   [disabled]="addSessionForm.invalid" style="margin-right:5px;" type="submit" (click)="addSession()" class="buttonval">Enregistrer</button>
+
+  </div>
+</mat-dialog-actions>

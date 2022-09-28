@@ -1,0 +1,56 @@
+<mat-card id="card" style="text-align: center;" >
+  <div class="entete">
+    <mat-toolbar >
+      <div>
+        <img src="./assets/icones/connexion.png">
+      </div>
+      <mat-toolbar-row>
+         <span class="material-icons">
+          lock
+        </span>
+        <h1>  Connexion <span> Admin </span></h1>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+  </div>
+  <mat-card-content>
+    <form [formGroup]="loginForm"   class="center" >
+      <div class="flex-container">
+        <div class="form-group">
+          <h4 class="label">Nom d'utilisateur</h4>
+          <mat-form-field appearance="fill" class="width">
+            <input  matInput  name="mailUsers" id="mailUsers" formControlName="mailUsers"
+                    class="form-control" required/>
+          </mat-form-field>
+          <div *ngIf="(mailUsers.dirty|| mailUsers.touched) && mailUsers.errors" class="errors">
+            <span *ngIf="mailUsers.errors?.required">nom d'utilisateur obligatoire</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="flex-container">
+        <div class="form-group">
+          <h4 class="label">Mot de passe</h4>
+          <mat-form-field appearance="fill" class="width">
+            <input  [type]="passwordType" matInput  name="passwordUsers" id="passwordUsers" formControlName="passwordUsers"
+                    class="form-control" required/>
+            <mat-icon matSuffix  [color]="passswordIsShown===true?'secondary':'red'"
+                      [style]="passswordIsShown===true?'opacity:100%':'opacity:50%'" item-end
+                      (click)="PasswordVisible()" class="pointer">visibility</mat-icon>
+
+          </mat-form-field>
+          <div *ngIf="(passwordUsers.dirty|| passwordUsers.touched) && passwordUsers.errors" class="errors ">
+            <span *ngIf="passwordUsers.errors?.required">mot de passe obligatoire</span>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </mat-card-content>
+  <mat-dialog-actions>
+    <div class="flex-container">
+      <button   [disabled]="loginForm.invalid" style="margin-right:5px;" type="submit" (click)="login()" class="buttonval">Connexion</button>
+    </div>
+  </mat-dialog-actions>
+</mat-card>

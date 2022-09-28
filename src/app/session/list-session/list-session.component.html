@@ -1,0 +1,111 @@
+<div align='center'><h2>Liste des Sessions</h2></div>
+
+<div>
+
+  <div class="right">
+<!--    <a routerLink="../add-session" onclick="openDialog()">-->
+    <a button (click)="openDialog()" style="cursor: pointer;">
+      <span class="material-icons color_green">
+       add_circle
+    </span>
+   </a>
+
+  </div>
+
+  <table #exporter="matTableExporter"  [dataSource]="dataSource"  matSort mat-table matTableExporter>
+    <ng-container matColumnDef="sessNom">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom
+          <input type='text'  id="nameSearchBox" />
+      </th>
+      <td mat-cell *matCellDef="let session"> {{session.sessNom}}</td>
+    </ng-container>
+    <ng-container matColumnDef="sessYear">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Année
+        <input type='text'  id="yearSearchBox"  (keypress)="utileService.numericOnly($event)"/>
+      </th>
+      <td mat-cell *matCellDef="let session"> {{session.sessYear}}</td>
+    </ng-container>
+    <ng-container matColumnDef="sessStart">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date début
+
+      </th>
+      <td mat-cell *matCellDef="let session"> {{session.sessStart | date:'dd/MM/yyyy'}}</td>
+    </ng-container>
+    <ng-container matColumnDef="sessEnd">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date fin
+
+      </th>
+      <td mat-cell *matCellDef="let session"> {{session.sessEnd | date:'dd/MM/yyyy'}}</td>
+
+    </ng-container>
+    <ng-container matColumnDef="sessMiddle" class="hidden-col">
+      <th mat-header-cell *matHeaderCellDef class="hidden-col"> Mi Session</th>
+      <td mat-cell *matCellDef="let session" class="hidden-col"> {{session.sessMiddle}}</td>
+    </ng-container>
+    <ng-container matColumnDef="sessStatus">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let session">
+        <a button *ngIf="session.sessStatus==1">
+          <span class="material-icons color_Turcois " style="cursor: pointer;" title="désactiver" (click)="activeSession(session,0)">
+             close
+            </span></a>
+        <a button *ngIf="session.sessStatus==0">
+          <span class="material-icons color_Turcois " style="cursor: pointer;" title="activer" (click)="activeSession(session,1)">
+            check
+            </span>
+        </a></td>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let session">
+        <a>
+          <!--<span class="material-icons color_blue"  [routerLink]="['../Add-classe',JSON.stringify(class)]" style="cursor: pointer;">-->
+          <span class="material-icons color_blue" button style="cursor: pointer;" title="éditer" (click)="editDialog(session)">
+
+         <!--<span class="material-icons color_blue"  routerLink="../Add-classe" [state]="{ example: 'class' }" style="cursor: pointer;">
+-->
+                mode
+            </span>
+
+        </a>
+
+      </td>
+
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let session">
+
+
+        <a *ngIf="objectExist(sessionUse,session)==true">
+          <span class="material-icons color_red opacity" style="opacity:.5" title="Supprimer">
+              delete_forever
+            </span>
+
+        </a>
+        <a button *ngIf="objectExist(sessionUse,session)==false" style="cursor: pointer;" title="Supprimer" (click)="deleteSession(session.id)">
+          <span class="material-icons color_red">
+              delete_forever
+            </span>
+
+        </a>
+      </td>
+
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator
+    (page)="getPaginatorData($event)"
+    [length]="length"
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="showFirstLastButtons"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageIndex]="pageIndex">
+  </mat-paginator>
+</div>
+
+
